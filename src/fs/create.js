@@ -1,15 +1,25 @@
-import { writeFile } from 'fs';
+import { writeFile, existsSync } from 'fs';
 
 const content = 'I am fresh and young';
 
 const create = async () => {
-    writeFile('./src/fs/files/fresh.txt', content, (err) => {
-        if(err) {
-            console.error("FS operation failed");
-            return;
+    try {
+        const exists = existsSync('./src/fs/files/fresh.txt');
+        if (exists) {
+            throw Error('FS operation failed');
         }
-        console.log("File created");
-    }) 
+
+        writeFile('./src/fs/files/fresh.txt', content, (error) => {
+            if (error) {
+                throw Error("FS operation failed");
+            }
+            console.log("File created");
+        });
+        
+    } catch (error) {
+        console.log(error);
+        return;
+    }
 };
 
 await create();
