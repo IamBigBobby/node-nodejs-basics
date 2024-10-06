@@ -9,7 +9,7 @@ const rename = async () => {
         const existsOldPath = existsSync(oldPath);
         const existsNewPath = existsSync(newPath);
 
-            if(existsNewPath || existsOldPath){
+            if(existsNewPath || !existsOldPath){
                 throw Error('FS operation failed')
             }
 
