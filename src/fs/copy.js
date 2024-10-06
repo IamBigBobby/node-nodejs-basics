@@ -1,7 +1,6 @@
 import { existsSync } from 'fs';
 import { readdir, readFile, mkdir, writeFile } from 'fs/promises';
 import path from "path";
-import { fileURLToPath } from 'url';
 
 const copy = async () => {
     
